@@ -13,15 +13,14 @@ class Solution:
         for i in range(len(s)):
             cur_letter = s[i]
             cur_value = char_map[cur_letter]
+            
+            if i > 0 and (cur_value > char_map[s[i - 1]]):
+                # compare with the previous letter
+                # if the current one is larger than the previous one,
+                # substract 2x to also substract the previous step (else)
+                result += cur_value - (2 * char_map[s[i - 1]])
+            else:
+                result += cur_value
 
-            if i < (len(s) - 1):
-                next_letter = s[i + 1]
-                if (
-                    (cur_letter == 'C' and next_letter in ('D', 'M')) or
-                    (cur_letter == 'X' and next_letter in ('L', 'C')) or
-                    (cur_letter == 'I' and next_letter in ('V', 'X'))
-                ):
-                    cur_value *= -1
-            result += cur_value
         return result
         
