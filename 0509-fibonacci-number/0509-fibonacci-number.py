@@ -1,4 +1,7 @@
+import functools
+
 class Solution:
+    @functools.lru_cache
     def fib(self, n: int) -> int:
         if n == 0:
             return 0
