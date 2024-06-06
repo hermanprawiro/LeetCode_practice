@@ -12,7 +12,7 @@ class Solution:
                 if len(stack) == 0:
                     return False
                 top = stack.pop()
-                if top != pair_close[char]:
+                if top != pairs[char]:
                     return False
             else:
                 stack.append(char)
