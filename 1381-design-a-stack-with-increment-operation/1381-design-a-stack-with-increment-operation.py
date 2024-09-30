@@ -6,13 +6,13 @@ class CustomStack:
         self.data = [0] * self.max_size
 
     def push(self, x: int) -> None:
-        if self._isFull():
+        if self.isFull():
             return
         self.data[self.size] = x
         self.size += 1
 
     def pop(self) -> int:
-        if self._isEmpty():
+        if self.isEmpty():
             return -1
         self.size -= 1
         return self.data[self.size]
@@ -21,10 +21,10 @@ class CustomStack:
         for i in range(min(k, self.size)):
             self.data[i] += val
 
-    def _isEmpty(self):
+    def isEmpty(self):
         return self.size == 0
 
-    def _isFull(self):
+    def isFull(self):
         return self.size == self.max_size
 
 
