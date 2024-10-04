@@ -8,20 +8,15 @@ class Solution:
             total += val
         if total % n_teams:
             return -1
-        target = total // n_teams
-        visited = set()
-        result = []
-        for val, count in maps.items():
-            if val in visited:
-                continue
-            if val >= target:
+        target = total // n_teams # target skill for each team
+        # will count each team twice, so divide the answer by 2 in the end
+        answer = 0
+        for val in skill:
+            if val >= target: # if the individual skill >= team skill
                 return -1
-            need_val = target - val
-            if maps[need_val] != maps[val]:
+            partner_val = target - val
+            if maps[partner_val] != maps[val]: # check if partner exists
                 return -1
-            n_team = count if val != need_val else count // 2
-            result.append(val * need_val * n_team)
-            visited.add(val)
-            visited.add(need_val)
-        return sum(result)
+            answer += val * partner_val
+        return answer // 2
             
