@@ -9,14 +9,20 @@ class Solution:
         if total % n_teams:
             return -1
         target = total // n_teams # target skill for each team
-        # will count each team twice, so divide the answer by 2 in the end
+        # iterate the map with an additional visited set to skip the partner's
+        visited = set()
         answer = 0
-        for val in skill:
+        for val, count in maps.items():
+            if val in visited:
+                continue
             if val >= target: # if the individual skill >= team skill
                 return -1
             partner_val = target - val
-            if maps[partner_val] != maps[val]: # check if partner exists
+            if maps[partner_val] != maps[val]:
                 return -1
-            answer += val * partner_val
-        return answer // 2
+            n_team = count if val != partner_val else count // 2
+            answer += val * partner_val * n_team
+            visited.add(val)
+            visited.add(partner_val)
+        return answer
             
