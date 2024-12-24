@@ -35,12 +35,15 @@ class Solution:
         If 2 nodes left, the diameter is 2n + 1.
         """
         queue = deque()
+        # find out the degree of each node, degree is num of neighbors
+        # if the node is leaf node (degree == 1), add to queue
         degrees = [0] * size
         for node, neighbor in enumerate(adj):
             degrees[node] = len(neighbor)
             if degrees[node] == 1:
                 queue.append(node)
         
+        # process the queue until only 1 or 2 nodes remain
         n_remain = size
         n = 0
         while n_remain > 2:
